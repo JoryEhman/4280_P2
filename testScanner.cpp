@@ -3,19 +3,30 @@
 //print one token per line
 //stop when EOFTk is returned
 
-#include <stdio>
+#include <cstdio>
+#include <iostream>
 #include "testScanner.h"
 #include "scanner.h"
 
 
-void testScanner(FILE* file){
+void testScanner(FILE* file)
+{
     token tk;
 
-    do {
+    do
+    {
         tk = scanner(file);
 
-        std::cout << tokenNames[tk.id] << " " <<
-                           tk.instance << " " <<
-                           tk.line << std::endl;
+        if (tk.id == EOF_tk)
+        {
+            std::cout << tokenNames[tk.id] << std::endl;
+        }
+        else
+        {
+            std::cout << tokenNames[tk.id] << " "
+                      << tk.instance << " "
+                      << tk.line << std::endl;
+        }
+
     } while (tk.id != EOF_tk);
-}
+};
